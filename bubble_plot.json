@@ -1,0 +1,80 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 400,
+    "title": "Land Area Vs Density ",
+    "data": {
+      "url": "world_pop_data_continent.csv"
+    },
+    "params": [
+      {
+      "name": "Continent_selection",
+      "bind": {
+      "input": "select",
+      "options": [
+        null,
+        "North America",
+        "South America",
+        "Europe",
+        "Africa",
+        "Asia",
+        "Oceania"
+],
+
+"labels":[
+"Show All",
+"North America",
+"South America",
+"Europe",
+"Africa",
+"Asia",
+"Oceania"
+],
+"name": "Continent Selection: "
+}
+}
+],
+"transform": [
+
+  {
+  "filter": "Continent_selection == null || datum.Continent == Continent_selection"}
+  ],
+
+      
+    "mark": "circle",
+    "encoding": {
+      "y": {
+        "field": " Land Area",
+        "type": "quantitative",
+        "title":"Land Area (km^2)",
+        "scale":{"domain":[0,18000000]}
+        
+          
+      },
+      "x": {
+        "field": "Density ",
+        "type": "quantitative",
+        "scale":{"domain":[0,3000]}
+      },
+      "color": {
+        "field": "Continent",
+        "type": "nominal"
+      },
+      "size": {
+        "field":"Population (2020)",
+        "type":"quantitative"
+      },
+      
+      
+      "tooltip": [
+        {"field": "Country", "type": "nominal"},
+        {"field": "Density ", "type": "quantitative","title":"Density (No. per km^2)","format": ","},
+        {"field": " Land Area", "type": "quantitative", "title":"Land Area (km^2)","format": ","}
+        
+      ]
+    }
+  }
+
+    
+  
+    
